@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SR Biotek 조직도</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  background: #f7f8fa;
+  color: #333;
+  font-size: 12px;
+  min-width: 1100px;
+}
+
+.page-header {
+  padding: 14px 28px 10px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+.page-header .brand { font-size: 19px; font-weight: 800; color: #2d2d2d; }
+.page-header .brand span { font-size: 12px; font-weight: 400; color: #aaa; margin-left: 8px; }
+
+/* ── 전체 wrapper: 세로로 쌓기 ── */
+.page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 20px 20px;
+  gap: 10px;
+}
+
+/* ── Top area: CEO 중앙, 임원 오른쪽 끝 ── */
+.top-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding: 16px 0 16px;
+  min-height: 90px;
+}
+.ceo-box {
+  background: #7c6bbf;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.ceo-box .ceo-label { font-size: 10px; opacity: 0.85; }
+.ceo-box .ceo-name  { font-size: 17px; font-weight: 800; margin-top: 2px; }
+
+.side-execs {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.side-box {
+  background: #b0a8d8;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 14px;
+  text-align: center;
+  cursor: pointer;
+  min-width: 110px;
+}
+.side-box .sb-label { font-size: 9px; opacity: 0.85; }
+.side-box .sb-name  { font-size: 13px; font-weight: 700; margin-top: 1px; }
+
+/* ── 3-campus row ── */
+.campus-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  width: 100%;
+  align-items: start;
+}
+
+/* ── Campus wrapper ── */
+.campus {
+  border-radius: 14px;
+  padding: 12px;
+}
+.campus-gangnam  { background: #ede8f8; border: 1.5px solid #c8b8f0; }
+.campus-gwanggyo { background: #e8f5ef; border: 1.5px solid #a8d8be; min-width: 200px; }
+.campus-seongnam { background: #fdf0e8; border: 1.5px solid #f0c8a0; }
+
+.campus-title { text-align: center; margin-bottom: 10px; }
+.campus-title .ct-name { font-size: 13px; font-weight: 800; }
+.campus-gangnam  .campus-title .ct-name { color: #6a4fbf; }
+.campus-gwanggyo .campus-title .ct-name { color: #2d8a5e; }
+.campus-seongnam .campus-title .ct-name { color: #c07030; }
+.campus-title .ct-head { font-size: 10px; color: #777; margin-top: 1px; }
+
+/* ── Dept card ── */
+.dept-card {
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  margin-bottom: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.dept-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.13); }
+
+.dept-title { text-align: center; padding: 8px 11px 6px; }
+.dept-title .dt-name { font-size: 12px; font-weight: 700; }
+.dept-title .dt-sub  { font-size: 9.5px; color: #555; margin-top: 1px; opacity: 0.8; }
+
+.member-list {
+  background: white;
+  padding: 6px 11px 8px;
+  flex: 1;
+}
+.member-item { font-size: 11px; padding: 2px 0; display: flex; align-items: center; gap: 2px; }
+.member-item .mn { font-weight: 600; }
+.member-item .mr { color: #555; }
+
+/* dept color tokens */
+.d-purple  { background:#d8d0f0; } .d-purple .dt-name  { color:#5040a0; }
+.d-pink    { background:#f5c8d8; } .d-pink   .dt-name  { color:#a03060; }
+.d-teal    { background:#c0e8d8; } .d-teal   .dt-name  { color:#206850; }
+.d-orange  { background:#f5d8b8; } .d-orange .dt-name  { color:#a05020; }
+.d-blue    { background:#c8ddf0; } .d-blue   .dt-name  { color:#204880; }
+.d-rose    { background:#f0c8c0; } .d-rose   .dt-name  { color:#882020; }
+.d-yellow  { background:#f0e8b0; } .d-yellow .dt-name  { color:#806020; }
+.d-green   { background:#c8e8c0; } .d-green  .dt-name  { color:#206830; }
+.d-lavender{ background:#e0d0f0; } .d-lavender .dt-name{ color:#6040a0; }
+.d-mint    { background:#b8e8e0; } .d-mint   .dt-name  { color:#206060; }
+.d-peach   { background:#f8d8c0; } .d-peach  .dt-name  { color:#a04820; }
+.d-sage    { background:#c8d8c0; } .d-sage   .dt-name  { color:#305030; }
+
+/* ── 강남 내부 레이아웃 ── */
+.gn-top   { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.gn-mid   { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.gn-brand { margin-bottom: 8px; }
+.gn-sales { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+/* 전략 왼쪽, 브랜드 같은 너비 맞추기 위해 grid-column stretch */
+.gn-top .d-purple { /* 전략 */ }
+
+/* ── 광교 내부 ── */
+.gg-grid { display: flex; flex-direction: column; gap: 8px; }
+
+/* ── 성남 내부 ── */
+.sn-top  { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.sn-mid  { margin-bottom: 8px; }
+.sn-bot  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+/* ── Modal ── */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.45); z-index: 999;
+  align-items: center; justify-content: center;
+}
+.overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: 14px;
+  width: 92%; max-width: 500px; max-height: 80vh;
+  overflow-y: auto; box-shadow: 0 8px 40px rgba(0,0,0,.2);
+  padding: 24px; position: relative;
+}
+.modal-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; font-size: 18px; color: #aaa; cursor: pointer;
+}
+.modal-close:hover { color: #555; }
+.modal-dept-title {
+  font-size: 16px; font-weight: 800; color: #2d2d2d;
+  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #eee;
+}
+.modal-dept-title span { color: #888; font-weight: 400; font-size: 13px; }
+
+.person-card {
+  background: #fafafa; border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 10px;
+}
+.person-card:last-child { margin-bottom: 0; }
+.person-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.person-name { font-size: 14px; font-weight: 700; }
+.phone-badge {
+  background: #6a4fbf; color: white;
+  border-radius: 20px; padding: 2px 9px; font-size: 11px; font-weight: 600;
+}
+.person-info { display: grid; grid-template-columns: 44px 1fr; gap: 3px 8px; font-size: 12px; }
+.info-label { color: #888; font-weight: 500; }
+.rr-section { margin-top: 8px; }
+.rr-label { font-size: 11px; font-weight: 700; color: #444; margin-bottom: 3px; }
+.rr-bullet { font-size: 11px; color: #555; line-height: 1.7; display: flex; gap: 4px; }
+.rr-bullet::before { content: "•"; color: #888; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="brand">SR biotek <span>Organization Chart</span></div>
+</div>
+
+<div class="page-body">
+
+<!-- CEO -->
+<div class="top-area">
+  <div class="ceo-box" onclick="openModal('CEO', [{name:'이소형',rank:'대표이사',mobile:'010-7567-3140',office:'-',ext:'-',rr:''}])">
+    <div class="ceo-label">CEO</div>
+    <div class="ceo-name">이소형</div>
+  </div>
+  <div class="side-execs">
+    <div class="side-box" onclick="openModal('연구총괄 CSO', [{name:'송병호',rank:'CSO',mobile:'010-3738-1442',office:'-',ext:'-',rr:''}])">
+      <div class="sb-label">연구총괄 CSO</div>
+      <div class="sb-name">송병호</div>
+    </div>
+    <div class="side-box" onclick="openModal('사내이사', [{name:'박현석',rank:'사내이사 이사',mobile:'010-4994-1131',office:'-',ext:'-',rr:''}])">
+      <div class="sb-label">사내이사</div>
+      <div class="sb-name">박현석 이사</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 Campus Row -->
+<div class="campus-row">
+
+  <!-- ══ 강남 ══ -->
+  <div class="campus campus-gangnam">
+    <div class="campus-title">
+      <div class="ct-name">강남 CAMPUS</div>
+      <div class="ct-head">이소형 대표</div>
+    </div>
+
+    <!-- 전략 + 인사 -->
+    <div class="gn-top">
+      <div class="dept-card d-purple" onclick="openModal('전략 · Strategic', [
+        {name:'노서희',rank:'대리',mobile:'010-9940-0939',office:'-',ext:'-',rr:'• 전략 기획 업무',leader:true},
+        {name:'이은지',rank:'사원',mobile:'010-9207-1261',office:'070-4733-7306',ext:'7306',rr:'• 전략 기획 업무'},
+        {name:'곽윤서',rank:'대리',mobile:'010-2876-2643',office:'-',ext:'-',rr:'• 전략 기획 업무'},
+        {name:'왕자문',rank:'사원',mobile:'010-5936-6896',office:'-',ext:'-',rr:'• 전략 기획 업무'},
+        {name:'김예빈',rank:'사원',mobile:'010-3932-7908',office:'-',ext:'-',rr:'• 전략 기획 업무'},
+        {name:'엄다혜',rank:'사원',mobile:'010-3700-4325',office:'-',ext:'-',rr:'• 전략 기획 업무'},
+        {name:'조은비',rank:'사원',mobile:'010-8978-7257',office:'-',ext:'-',rr:'• 전략 기획 업무'},
+        {name:'박지인',rank:'사원',mobile:'010-9509-8384',office:'-',ext:'-',rr:'• 전략 기획 업무'}
+      ])">
+        <div class="dept-title"><div class="dt-name">전략</div><div class="dt-sub">Strategic</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">노서희</span><span class="mr">_대리</span></div>
+        <div class="member-item"><span class="mn">이은지</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">곽윤서</span><span class="mr">_대리</span></div>
+        <div class="member-item"><span class="mn">왕자문</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">김예빈</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">엄다혜</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">조은비</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">박지인</span><span class="mr">_사원</span></div>
+            </div>
+    </div>
+
+      <div>
+        <div class="dept-card d-pink" style="margin-bottom:8px;" onclick="openModal('인사 · Human Resource', [
+          {name:'김석원',rank:'과장',mobile:'010-3137-8637',office:'-',ext:'-',rr:'• 인사 : Payroll / 입퇴사 신고 / 채용 / 원천세 신고 / 연말정산 / 사업소득·일용직 관리 / 법정의무교육 / 자회사 관리 / 제규정 수립 및 운영\n• 총무 : 업체별 월 마감 / 기업 보험갱신 관리 / 자산관리',leader:true},
+          {name:'이아라',rank:'과장',mobile:'010-9109-4932',office:'070-4713-0082',ext:'0082',rr:'• 인사 : Payroll / 입퇴사 신고 / 채용 / 원천세 신고 / 연말정산 / 사업소득·일용직 관리 / 법정의무교육 / 자회사 관리 / 제규정 수립 및 운영\n• 총무 : 업체별 월 마감 / 기업 보험갱신 관리 / 자산관리'}
+        ])">
+          <div class="dept-title"><div class="dt-name">인사</div><div class="dt-sub">Human Resource</div></div>
+      <div class="member-list">
+          <div class="member-item"><span>⭐</span><span class="mn">김석원</span><span class="mr">_과장</span></div>
+          <div class="member-item"><span class="mn">이아라</span><span class="mr">_과장</span></div>
+              </div>
+    </div>
+
+        <div class="dept-card d-teal" onclick="openModal('재무 · Finance', [
+          {name:'고대진',rank:'부장',mobile:'010-6734-5111',office:'-',ext:'-',rr:'• 재무 전반 업무',leader:true},
+          {name:'김나리',rank:'대리',mobile:'010-5165-0154',office:'-',ext:'-',rr:'• 재무 전반 업무'}
+        ])">
+          <div class="dept-title"><div class="dt-name">재무</div><div class="dt-sub">Finance</div></div>
+      <div class="member-list">
+          <div class="member-item"><span>⭐</span><span class="mn">고대진</span><span class="mr">_부장</span></div>
+          <div class="member-item"><span class="mn">김나리</span><span class="mr">_대리</span></div>
+              </div>
+    </div>
+      </div>
+    </div>
+
+    <!-- 브랜드매니지먼트 + 운영지원 -->
+    <div class="gn-mid">
+      <div class="dept-card d-lavender" onclick="openModal('브랜드 매니지먼트팀 · Brand Management', [
+        {name:'최희정',rank:'부장',mobile:'010-8823-9877',office:'070-4733-7046',ext:'-',rr:'• 이데넬 브랜드 운영 총괄 : 브랜딩 수립 및 관리 / 사업 포트폴리오 다각화 / 국가별·유통채널별 제품 기획 / 상표권 관리\n• 상품기획 및 관리 : 협력업체 관리 / 신규 제형 개발 / 제품 원가율 및 스펙관리\n• 시술법 기획 및 교육',leader:true},
+        {name:'김윤지',rank:'과장',mobile:'010-3080-0862',office:'-',ext:'-',rr:'• 상품기획 및 BM 업무 진행 : 경쟁사 동향 및 시장조사 / 제품개발의뢰 및 샘플 품평 / 협력사 발굴 및 관리\n• 책임판매 및 고객관리\n• 브랜드 및 상품 지재권 관리'},
+        {name:'정슬기',rank:'대리',mobile:'010-2930-5159',office:'-',ext:'-',rr:'• 상품기획 및 BM 업무 진행\n• 책임판매 및 고객관리\n• 브랜드/제품/원료관련 컨텐츠 제작'},
+        {name:'박나리',rank:'과장',mobile:'010-7160-1329',office:'-',ext:'-',rr:'• 브랜드 상품 디자인(런칭 및 리뉴얼) : 브랜드 패키지 디자인 / 인쇄 감리 및 부자재 표준 설정\n• VMD 기획 리딩 총괄 (팝업부스, 박람회 준비 등)\n• Goods & Graphic Design'},
+        {name:'김윤서',rank:'대리',mobile:'010-8819-4965',office:'-',ext:'-',rr:'• 브랜드 상품 디자인(런칭 및 리뉴얼)\n• VMD 기획 리딩 총괄\n• Goods & Graphic Design'},
+        {name:'정선아',rank:'대리',mobile:'010-9143-9779',office:'-',ext:'-',rr:'• 브랜딩 / 콘텐츠 디렉션 : 브랜드 비주얼 방향성, 톤앤무드 정립\n• 브랜드 콘텐츠 기획/제작 : 상세페이지 / SNS 이미지 제작\n• 브랜드 이미지 퀄리티 유지 보수'}
+      ])">
+        <div class="dept-title"><div class="dt-name">브랜드 매니지먼트팀</div><div class="dt-sub">Brand Management</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">최희정</span><span class="mr">_부장</span></div>
+        <div class="member-item"><span class="mn">김윤지</span><span class="mr">_과장</span></div>
+        <div class="member-item"><span class="mn">정슬기</span><span class="mr">_대리</span></div>
+        <div class="member-item"><span class="mn">박나리</span><span class="mr">_과장</span></div>
+        <div class="member-item"><span class="mn">김윤서</span><span class="mr">_대리</span></div>
+        <div class="member-item"><span class="mn">정선아</span><span class="mr">_대리</span></div>
+            </div>
+    </div>
+
+      <div class="dept-card d-orange" onclick="openModal('운영지원 · Operations Support', [
+        {name:'김아리',rank:'부대표',mobile:'010-9616-8868',office:'070-7829-5108',ext:'1004',rr:'• SALES 1팀 / 제형연구 / 성남캠퍼스 총괄',leader:true},
+        {name:'박서현',rank:'사원',mobile:'010-2591-5029',office:'-',ext:'-',rr:''}
+      ])">
+        <div class="dept-title"><div class="dt-name">운영지원</div><div class="dt-sub">Operations Support</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">김아리</span><span class="mr">_부대표</span></div>
+        <div class="member-item"><span class="mn">박서현</span><span class="mr">_사원</span></div>
+            </div>
+    </div>
+    </div>
+
+    <!-- SALES 3개 -->
+    <div class="gn-sales">
+      <div class="dept-card d-rose" onclick="openModal('SALES 1팀 · Sales Team 1', [
+        {name:'김아리',rank:'부대표',mobile:'010-9616-8868',office:'070-7829-5108',ext:'1004',rr:'• SALES 1팀 총괄',leader:true},
+        {name:'유지원',rank:'대리',mobile:'010-5579-3066',office:'070-4733-7305',ext:'7305',rr:'• 북남미 지역'}
+      ])">
+        <div class="dept-title"><div class="dt-name">SALES 1팀</div><div class="dt-sub">Sales Team 1</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">김아리</span><span class="mr">_부대표</span></div>
+        <div class="member-item"><span class="mn">유지원</span><span class="mr">_대리</span></div>
+            </div>
+    </div>
+      <div class="dept-card d-rose" onclick="openModal('SALES 2팀 · Sales Team 2', [
+        {name:'임다정',rank:'과장',mobile:'010-9996-4408',office:'070-5056-1584',ext:'1584',rr:'• 영업 : 해외바이어 미팅 / 해외 바이어 관리 및 발굴 / 해외 완제품 영업 / ODM 생산 및 출고 관리\n• 영업지원 : 출고·수출 연관서류 작성 / 수출면장신고 / 정부지원사업 서칭 및 신청 / 자료 영문 번역\n• 재무 : 외화·한화 입출금 공유 / 수출액 매칭 업무',leader:true},
+        {name:'이미연',rank:'사원',mobile:'010-4015-9625',office:'070-7829-5105',ext:'1001',rr:'• 유럽 / 아시아'}
+      ])">
+        <div class="dept-title"><div class="dt-name">SALES 2팀</div><div class="dt-sub">Sales Team 2</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">임다정</span><span class="mr">_과장</span></div>
+        <div class="member-item"><span class="mn">이미연</span><span class="mr">_사원</span></div>
+            </div>
+    </div>
+      <div class="dept-card d-rose" onclick="openModal('SALES 3팀 · Sales Team 3', [
+        {name:'베카',rank:'과장',mobile:'010-9117-9167',office:'070-4733-7307',ext:'7307',rr:'• 중앙아시아 / 러시아 / 인도',leader:true},
+        {name:'박지희',rank:'대리',mobile:'010-3510-0812',office:'-',ext:'-',rr:'• 중앙아시아 / 러시아 / 인도'}
+      ])">
+        <div class="dept-title"><div class="dt-name">SALES 3팀</div><div class="dt-sub">Sales Team 3</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">베카</span><span class="mr">_과장</span></div>
+        <div class="member-item"><span class="mn">박지희</span><span class="mr">_대리</span></div>
+            </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ══ 광교 ══ -->
+  <div class="campus campus-gwanggyo">
+    <div class="campus-title">
+      <div class="ct-name">광교 CAMPUS</div>
+      <div class="ct-head">박가민 부장 (센터장)</div>
+    </div>
+    <div class="gg-grid">
+      <div class="dept-card d-teal" onclick="openModal('신소재 개발 Bio Center · New Material Development', [
+        {name:'박가민',rank:'부장(센터장)',mobile:'010-4144-8210',office:'070-4733-7090',ext:'',rr:'• 알텀 펩타이드 : 생산 / 공정개발 및 개선 / 임상 및 비임상시험 / 관련 실험기획안 수립 및 진행 / 재고관리\n• 알텀 펩타이드 특허 진행 및 관리 / SOP 및 표준서 작성 / ERP 관리 / COA 및 문서보관',leader:true},
+        {name:'박찬후',rank:'연구원',mobile:'010-5564-9858',office:'070-4733-7094',ext:'',rr:'• 알텀 펩타이드 : 생산 / 공정개발 및 개선 / 임상 및 비임상시험'},
+        {name:'최욱',rank:'연구원',mobile:'010-9899-8944',office:'-',ext:'',rr:'• 분석연구원'}
+      ])">
+        <div class="dept-title"><div class="dt-name">신소재 개발 Bio Center</div><div class="dt-sub">New Material Development</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">박가민</span><span class="mr">_센터장</span></div>
+        <div class="member-item"><span class="mn">박찬후</span><span class="mr">_연구원</span></div>
+        <div class="member-item"><span class="mn">최욱</span><span class="mr">_연구원</span></div>
+            </div>
+    </div>
+
+      <div class="dept-card d-yellow" onclick="openModal('알텀공장 · Altum Plant', [
+        {name:'김동수',rank:'사원',mobile:'010-2003-1987',office:'-',ext:'',rr:'• 원료 생산'},
+        {name:'이우림',rank:'사원',mobile:'010-3707-3071',office:'-',ext:'',rr:'• 원료 생산'},
+        {name:'권우현',rank:'과장',mobile:'',office:'-',ext:'-',rr:''}
+      ])">
+        <div class="dept-title"><div class="dt-name">알텀공장</div><div class="dt-sub">Altum Plant</div></div>
+      <div class="member-list">
+        <div class="member-item"><span class="mn">김동수</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">이우림</span><span class="mr">_사원</span></div>
+        <div class="member-item"><span class="mn">권우현</span><span class="mr">_과장</span></div>
+            </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ══ 성남 ══ -->
+  <div class="campus campus-seongnam">
+    <div class="campus-title">
+      <div class="ct-name">성남 CAMPUS</div>
+      <div class="ct-head">김아리 부대표</div>
+    </div>
+
+    <!-- 제형연구 + 제조공장 -->
+    <div class="sn-top">
+      <div class="dept-card d-blue" onclick="openModal('제형연구 · Research & Development', [
+        {name:'김지아',rank:'책임 연구원',mobile:'010-8909-7469',office:'070-4733-7047',ext:'7047',rr:'• 실험: 신제형개발 / 샘플제작 (안정도·사용감·타겟카피) / 원료대체실험 / 기존제품개선 / 방부력테스트\n• 서류: 샘플설명서 / 전성분작성 / 제조지시서 작성 / 안정도결과 보고서 / 기능성심사서류\n• 기타: 신규원료 코딩 / 비건·유기농·할랄·식약처 심사 관련 원료자료 대응',leader:true},
+        {name:'박진하',rank:'책임 연구원',mobile:'010-5121-2704',office:'010-4733-7301',ext:'7301',rr:'• 실험: 신제형개발 / 샘플제작 / 원료대체실험 / 기존제품개선 / 방부력테스트\n• 서류: 샘플설명서 / 전성분작성 / 제조지시서 작성 / 기능성심사서류\n• 기타: 신규원료 코딩 / 비건·유기농·할랄 관련 원료자료 대응'},
+        {name:'윤홍건',rank:'사원',mobile:'010-9745-8154',office:'-',ext:'-',rr:''}
+      ])">
+        <div class="dept-title"><div class="dt-name">제형연구</div><div class="dt-sub">Research & Development</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">김지아</span><span class="mr">_책임 연구원</span></div>
+        <div class="member-item"><span class="mn">박진하</span><span class="mr">_책임 연구원</span></div>
+        <div class="member-item"><span class="mn">윤홍건</span><span class="mr">_사원</span></div>
+            </div>
+    </div>
+
+      <div class="dept-card d-pink" onclick="openModal('제조공장 · Manufacture Division', [
+        {name:'홍순기',rank:'부장(공장장)',mobile:'010-8478-9203',office:'-',ext:'-',rr:'• 제조/생산/물류/구매/품질 총괄',leader:true},
+        {name:'정귀오',rank:'대리',mobile:'010-9221-3205',office:'070-4733-7304',ext:'7304',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 제조설비 유지관리 / 처리수 설비 유지관리 / 원재료 재고관리 및 사용기한 관리'},
+        {name:'정의찬',rank:'차장(팀장)',mobile:'010-2290-4946',office:'070-4733-7302',ext:'7302',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 지게차 안전 점검표 / 대기배출시설 및 방지시설 운영기록부\n• 폐수배출시설 운영일지 작성&관리 / 기계실 공조기 윤활유 주입 등 점검'}
+      ])">
+        <div class="dept-title"><div class="dt-name">제조공장</div><div class="dt-sub">Manufacture Division</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">홍순기</span><span class="mr">_부장(공장장)</span></div>
+        <div class="member-item"><span class="mn">정귀오</span><span class="mr">_대리</span></div>
+        <div class="member-item"><span class="mn">정의찬</span><span class="mr">_차장(팀장)</span></div>
+            </div>
+    </div>
+    </div>
+
+    <!-- 생산기획팀 (생산관리+구매 통합) -->
+    <div class="sn-mid">
+      <div class="dept-card d-green" onclick="openModal('생산기획팀 · Production Planning', [
+        {name:'최제열',rank:'과장',mobile:'010-4682-4844',office:'070-7829-5107',ext:'5107',rr:'• 발주접수 / 매출마감 / 출고입력 / 고객사대응\n• 외주발주&마감 / 외주일정&납품일정 관리',leader:true},
+        {name:'이주석',rank:'대리',mobile:'010-9247-5357',office:'070-7829-0151',ext:'1006',rr:'• 구매 : 부자재·원료 발주 / 납기 일정 조율 / 자재 관련 업체 대응 / 부자재·원료 재고 관리'},
+        {name:'최다희',rank:'대리',mobile:'010-5469-2312',office:'-',ext:'-',rr:''}
+      ])">
+        <div class="dept-title"><div class="dt-name">생산기획팀</div><div class="dt-sub">Production Planning</div></div>
+      <div class="member-list">
+        <div>
+          <div class="member-item"><span>⭐</span><span class="mn">최제열</span><span class="mr">_과장</span></div>
+          <div class="member-item"><span class="mn">이주석</span><span class="mr">_대리</span></div>
+          <div class="member-item"><span class="mn">최다희</span><span class="mr">_대리</span></div>
+        </div>
+            </div>
+    </div>
+    </div>
+
+    <!-- 제조물류팀 (제조+물류 통합) + 품질 -->
+    <div class="sn-bot">
+      <div class="dept-card d-mint" onclick="openModal('제조물류팀 · Manufacture & Logistics', [
+        {name:'정의찬',rank:'차장',mobile:'010-2290-4946',office:'070-4733-7302',ext:'7302',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 지게차 안전 점검표 / 대기배출시설 및 방지시설 운영기록부\n• 폐수배출시설 운영일지 작성&관리 / 기계실 공조기 윤활유 주입 등 점검',leader:true},
+        {name:'신의철',rank:'과장',mobile:'010-8871-6774',office:'070-4733-7045',ext:'7045',rr:'• 원료&부자재 : 원료 입고 및 성적서 ERP 등록 / 원료 라벨링 / 원료 구매입력 / 자재·원료·벌크 출고시 ERP 창고이동\n• 기타 : 폐기물 처리 / KPP·AJ 파렛트 관리 / 벌크통 입출고 수량 관리 / 국내&해외 입출고 업무 / 자재·제품 재고관리'},
+        {name:'정귀오',rank:'대리',mobile:'010-9221-3205',office:'070-4733-7304',ext:'7304',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 제조설비 유지관리 / 원재료 재고관리 및 사용기한 관리'}
+      ])">
+        <div class="dept-title"><div class="dt-name">제조물류팀</div><div class="dt-sub">Manufacture & Logistics</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">정의찬</span><span class="mr">_차장</span></div>
+        <div class="member-item"><span class="mn">신의철</span><span class="mr">_과장</span></div>
+        <div class="member-item"><span class="mn">정귀오</span><span class="mr">_대리</span></div>
+            </div>
+    </div>
+
+      <div class="dept-card d-peach" onclick="openModal('품질 · Quality Assurance', [
+        {name:'정언식',rank:'차장(팀장)',mobile:'010-3585-7346',office:'070-7829-5109',ext:'1005',rr:'• 서류 : 제품표준서 제개정 / 완제품 성적서 작성 / 충포장기록서 양식 작성 / 제조기록서 발행 및 검토 / 수출 서류\n• 시험 : CT / 계측기검교정 / 충진량 확인 / 외부시험의뢰 / 정제수 순도시험\n• Audit 대응 : ISO22716 / CGMP / 비건·유기농·천연 화장품\n• 책판 : 원료목록보고 / 생산실적보고 / 기능성화장품보고 / 안전성보고',leader:true},
+        {name:'고정인',rank:'대리',mobile:'010-3514-2755',office:'070-4733-7043',ext:'7043',rr:'• 원료 : ERP항목체크 / 샘플링 / 원료QC(물성·pH) / 표준품&관리품 관리 / 원료성적서 작성\n• 자재 : ERP항목체크 / 표준품 관리 / 자재성적서 작성\n• 벌크 : 제조벌크 QC / 안정성 시험 / 벌크성적서·시험지시서 작성'},
+        {name:'김미란',rank:'대리',mobile:'010-2439-2392',office:'070-4733-7044',ext:'7044',rr:'• QC : 시험설비점검 / 미생물실험 / 작업장환경모니터링 / 방부력시험 / 배지성능시험 / 충포장기록서 작성 및 검토'}
+      ])">
+        <div class="dept-title"><div class="dt-name">품질</div><div class="dt-sub">Quality Assurance</div></div>
+      <div class="member-list">
+        <div class="member-item"><span>⭐</span><span class="mn">정언식</span><span class="mr">_차장(팀장)</span></div>
+        <div class="member-item"><span class="mn">고정인</span><span class="mr">_대리</span></div>
+        <div class="member-item"><span class="mn">김미란</span><span class="mr">_대리</span></div>
+            </div>
+    </div>
+    </div>
+
+  </div><!-- /성남 -->
+
+</div><!-- /campus-row -->
+
+<div style="padding:8px 24px 20px; font-size:11px; color:#aaa;">
+  ⭐ 팀장 / 리더 &nbsp;|&nbsp; 👆 부서 카드 클릭 시 상세 R&R 및 연락처 확인
+</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-dept-title" id="modalTitle"></div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+function openModal(deptName, members) {
+  const parts = deptName.split(' · ');
+  document.getElementById('modalTitle').innerHTML =
+    parts[0] + (parts[1] ? ' <span>· ' + parts[1] + '</span>' : '');
+
+  let html = '';
+  members.forEach(m => {
+    const phone = (m.mobile && m.mobile !== '-' && m.mobile !== '')
+      ? `<span class="phone-badge">${m.mobile}</span>` : '';
+    const ext = (m.ext && m.ext !== '-' && m.ext !== '') ? m.ext : '-';
+    const rrLines = m.rr ? m.rr.split('\n').filter(l => l.trim()) : [];
+
+    html += `<div class="person-card">
+      <div class="person-header">
+        <span class="person-name">${m.leader ? '⭐ ' : ''}${m.name}</span>${phone}
+      </div>
+      <div class="person-info">
+        <span class="info-label">직급</span><span>${m.rank || '-'}</span>
+        <span class="info-label">연락처</span><span>${m.mobile || '-'}</span>
+        <span class="info-label">내선</span><span>${ext}</span>
+      </div>`;
+    if (rrLines.length) {
+      html += `<div class="rr-section"><div class="rr-label">R&R (담당 업무)</div>`;
+      rrLines.forEach(l => { html += `<div class="rr-bullet">${l.replace(/^[•\-]\s*/,'')}</div>`; });
+      html += `</div>`;
+    }
+    html += `</div>`;
+  });
+
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('overlay'))
+    document.getElementById('overlay').classList.remove('open');
+}
+</script>
+</div><!-- /page-body -->
+</body>
+</html>
