@@ -87,7 +87,7 @@ body {
   border-radius: 14px;
   padding: 12px;
 }
-.campus-gangnam  { background: #ede8f8; border: 1.5px solid #c8b8f0; }
+.campus-gangnam  { background: #ede8f8; border: 1.5px solid #c8b8f0; max-width: 420px; }
 .campus-gwanggyo { background: #e8f5ef; border: 1.5px solid #a8d8be; min-width: 200px; }
 .campus-seongnam { background: #fdf0e8; border: 1.5px solid #f0c8a0; }
 
@@ -139,10 +139,10 @@ body {
 .d-sage    { background:#c8d8c0; } .d-sage   .dt-name  { color:#305030; }
 
 /* ── 강남 내부 레이아웃 ── */
-.gn-top   { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-.gn-mid   { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
-.gn-brand { margin-bottom: 8px; }
-.gn-sales { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.gn-top   { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.gn-mid   { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.gn-brand { margin-bottom: 6px; }
+.gn-sales { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
 
 /* 전략 왼쪽, 브랜드 같은 너비 맞추기 위해 grid-column stretch */
 .gn-top .d-purple { /* 전략 */ }
@@ -394,7 +394,7 @@ body {
       <div class="ct-head">김아리 부대표</div>
     </div>
 
-    <!-- 성남: 제형연구 | 제조공장 + 하위팀 -->
+    <!-- 성남: 제형연구 | 제조공장+품질 / 생산기획팀+제조물류팀 -->
     <div style="display:flex; gap:0; align-items:flex-start; width:100%;">
 
       <!-- 왼쪽: 제형연구 -->
@@ -416,39 +416,21 @@ body {
       <!-- 세로 구분선 -->
       <div style="width:2px; background:#d0d5dd; margin:4px 10px; align-self:stretch; border-radius:2px;"></div>
 
-      <!-- 오른쪽: 제조공장 + 하위팀 -->
+      <!-- 오른쪽: 제조공장+품질 (상단) / 생산기획팀+제조물류팀 (하단) -->
       <div style="flex:2; display:flex; flex-direction:column; gap:8px;">
 
-        <!-- 제조공장 (상단) -->
-        <div class="dept-card d-pink" onclick="openModal('제조공장 · Manufacture Division', [
-          {name:'홍순기',rank:'부장(공장장)',mobile:'010-8478-9203',office:'-',ext:'-',rr:'• 제조/생산/물류/구매/품질 총괄',leader:true}
-        ])">
-          <div class="dept-title"><div class="dt-name">제조공장</div><div class="dt-sub">Manufacture Division</div></div>
-          <div class="member-list">
-            <div class="member-item"><span>⭐</span><span class="mn">홍순기</span><span class="mr">_부장(공장장)</span></div>
-          </div>
-        </div>
-
-        <!-- 하위팀: 구분선 박스 안에 가로 배치 -->
-        <div style="border:2px solid #d0d5dd; border-radius:10px; padding:10px; display:flex; gap:8px;">
-
-          <!-- 생산기획팀 -->
+        <!-- 상단: 제조공장 + 품질 나란히 -->
+        <div style="display:flex; gap:8px;">
           <div style="flex:1;">
-            <div class="dept-card d-green" onclick="openModal('생산기획팀 · Production Planning', [
-              {name:'최제열',rank:'과장',mobile:'010-4682-4844',office:'070-7829-5107',ext:'5107',rr:'• 발주접수 / 매출마감 / 출고입력 / 고객사대응\n• 외주발주&마감 / 외주일정&납품일정 관리',leader:true},
-              {name:'이주석',rank:'대리',mobile:'010-9247-5357',office:'070-7829-0151',ext:'1006',rr:'• 구매 : 부자재·원료 발주 / 납기 일정 조율 / 자재 관련 업체 대응 / 부자재·원료 재고 관리'},
-              {name:'최다희',rank:'대리',mobile:'010-5469-2312',office:'-',ext:'-',rr:''}
+            <div class="dept-card d-pink" onclick="openModal('제조공장 · Manufacture Division', [
+              {name:'홍순기',rank:'부장(공장장)',mobile:'010-8478-9203',office:'-',ext:'-',rr:'• 제조/생산/물류/구매/품질 총괄',leader:true}
             ])">
-              <div class="dept-title"><div class="dt-name">생산기획팀</div><div class="dt-sub">Production Planning</div></div>
+              <div class="dept-title"><div class="dt-name">제조공장</div><div class="dt-sub">Manufacture Division</div></div>
               <div class="member-list">
-                <div class="member-item"><span>⭐</span><span class="mn">최제열</span><span class="mr">_과장</span></div>
-                <div class="member-item"><span class="mn">이주석</span><span class="mr">_대리</span></div>
-                <div class="member-item"><span class="mn">최다희</span><span class="mr">_대리</span></div>
+                <div class="member-item"><span>⭐</span><span class="mn">홍순기</span><span class="mr">_부장(공장장)</span></div>
               </div>
             </div>
           </div>
-
-          <!-- 품질팀 -->
           <div style="flex:1;">
             <div class="dept-card d-peach" onclick="openModal('품질 · Quality Assurance', [
               {name:'정언식',rank:'차장(팀장)',mobile:'010-3585-7346',office:'070-7829-5109',ext:'1005',rr:'• 서류 : 제품표준서 제개정 / 완제품 성적서 작성 / 충포장기록서 양식 작성 / 제조기록서 발행 및 검토 / 수출 서류\n• 시험 : CT / 계측기검교정 / 충진량 확인 / 외부시험의뢰 / 정제수 순도시험\n• Audit 대응 : ISO22716 / CGMP / 비건·유기농·천연 화장품\n• 책판 : 원료목록보고 / 생산실적보고 / 기능성화장품보고 / 안전성보고',leader:true},
@@ -463,8 +445,24 @@ body {
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- 제조물류팀 -->
+        <!-- 하단 박스: 생산기획팀 + 제조물류팀 -->
+        <div style="border:2px solid #d0d5dd; border-radius:10px; padding:10px; display:flex; gap:8px;">
+          <div style="flex:1;">
+            <div class="dept-card d-green" onclick="openModal('생산기획팀 · Production Planning', [
+              {name:'최제열',rank:'과장',mobile:'010-4682-4844',office:'070-7829-5107',ext:'5107',rr:'• 발주접수 / 매출마감 / 출고입력 / 고객사대응\n• 외주발주&마감 / 외주일정&납품일정 관리',leader:true},
+              {name:'이주석',rank:'대리',mobile:'010-9247-5357',office:'070-7829-0151',ext:'1006',rr:'• 구매 : 부자재·원료 발주 / 납기 일정 조율 / 자재 관련 업체 대응 / 부자재·원료 재고 관리'},
+              {name:'최다희',rank:'대리',mobile:'010-5469-2312',office:'-',ext:'-',rr:''}
+            ])">
+              <div class="dept-title"><div class="dt-name">생산기획팀</div><div class="dt-sub">Production Planning</div></div>
+              <div class="member-list">
+                <div class="member-item"><span>⭐</span><span class="mn">최제열</span><span class="mr">_과장</span></div>
+                <div class="member-item"><span class="mn">이주석</span><span class="mr">_대리</span></div>
+                <div class="member-item"><span class="mn">최다희</span><span class="mr">_대리</span></div>
+              </div>
+            </div>
+          </div>
           <div style="flex:1;">
             <div class="dept-card d-mint" onclick="openModal('제조물류팀 · Manufacture & Logistics', [
               {name:'정의찬',rank:'차장',mobile:'010-2290-4946',office:'070-4733-7302',ext:'7302',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 지게차 안전 점검표 / 대기배출시설 및 방지시설 운영기록부\n• 폐수배출시설 운영일지 작성&관리 / 기계실 공조기 윤활유 주입 등 점검',leader:true},
@@ -479,8 +477,8 @@ body {
               </div>
             </div>
           </div>
+        </div><!-- /하단 박스 -->
 
-        </div><!-- /하위팀 박스 -->
       </div><!-- /오른쪽 -->
     </div><!-- /성남 전체 flex -->
 
