@@ -75,11 +75,12 @@ body {
 
 /* ── 3-campus row ── */
 .campus-row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  flex-direction: row;
   gap: 6px;
   width: 100%;
   align-items: start;
+  justify-content: space-between;
 }
 
 /* ── Campus wrapper ── */
@@ -87,9 +88,9 @@ body {
   border-radius: 14px;
   padding: 10px;
 }
-.campus-gangnam  { background: #ede8f8; border: 1.5px solid #c8b8f0; width: 380px; }
-.campus-gwanggyo { background: #e8f5ef; border: 1.5px solid #a8d8be; width: 220px; }
-.campus-seongnam { background: #fdf0e8; border: 1.5px solid #f0c8a0; flex: 1; min-width: 480px; }
+.campus-gangnam  { background: #ede8f8; border: 1.5px solid #c8b8f0; flex: 0 0 auto; width: 360px; }
+.campus-gwanggyo { background: #e8f5ef; border: 1.5px solid #a8d8be; flex: 0 0 auto; align-self: center; margin: auto; }
+.campus-seongnam { background: #fdf0e8; border: 1.5px solid #f0c8a0; flex: 1 1 auto; }
 
 .campus-title { text-align: center; margin-bottom: 10px; }
 .campus-title .ct-name { font-size: 13px; font-weight: 800; }
