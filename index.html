@@ -394,77 +394,95 @@ body {
       <div class="ct-head">김아리 부대표</div>
     </div>
 
-    <!-- 제조공장 (맨 위, 홍순기만) -->
-    <div class="sn-top">
-      <div class="dept-card d-pink" onclick="openModal('제조공장 · Manufacture Division', [
-        {name:'홍순기',rank:'부장(공장장)',mobile:'010-8478-9203',office:'-',ext:'-',rr:'• 제조/생산/물류/구매/품질 총괄',leader:true}
-      ])">
-        <div class="dept-title"><div class="dt-name">제조공장</div><div class="dt-sub">Manufacture Division</div></div>
-      <div class="member-list">
-        <div class="member-item"><span>⭐</span><span class="mn">홍순기</span><span class="mr">_부장(공장장)</span></div>
-            </div>
-    </div>
-    </div>
+    <!-- 성남: 제형연구 | 제조공장 + 하위팀 -->
+    <div style="display:flex; gap:0; align-items:flex-start; width:100%;">
 
-    <!-- 생산기획팀 (생산관리+구매 통합) -->
-    <div class="sn-mid">
-      <div class="dept-card d-green" onclick="openModal('생산기획팀 · Production Planning', [
-        {name:'최제열',rank:'과장',mobile:'010-4682-4844',office:'070-7829-5107',ext:'5107',rr:'• 발주접수 / 매출마감 / 출고입력 / 고객사대응\n• 외주발주&마감 / 외주일정&납품일정 관리',leader:true},
-        {name:'이주석',rank:'대리',mobile:'010-9247-5357',office:'070-7829-0151',ext:'1006',rr:'• 구매 : 부자재·원료 발주 / 납기 일정 조율 / 자재 관련 업체 대응 / 부자재·원료 재고 관리'},
-        {name:'최다희',rank:'대리',mobile:'010-5469-2312',office:'-',ext:'-',rr:''}
-      ])">
-        <div class="dept-title"><div class="dt-name">생산기획팀</div><div class="dt-sub">Production Planning</div></div>
-      <div class="member-list">
-        <div>
-          <div class="member-item"><span>⭐</span><span class="mn">최제열</span><span class="mr">_과장</span></div>
-          <div class="member-item"><span class="mn">이주석</span><span class="mr">_대리</span></div>
-          <div class="member-item"><span class="mn">최다희</span><span class="mr">_대리</span></div>
+      <!-- 왼쪽: 제형연구 -->
+      <div style="flex:1;">
+        <div class="dept-card d-blue" onclick="openModal('제형연구 · Research & Development', [
+          {name:'김지아',rank:'책임 연구원',mobile:'010-8909-7469',office:'070-4733-7047',ext:'7047',rr:'• 실험: 신제형개발 / 샘플제작 (안정도·사용감·타겟카피) / 원료대체실험 / 기존제품개선 / 방부력테스트\n• 서류: 샘플설명서 / 전성분작성 / 제조지시서 작성 / 안정도결과 보고서 / 기능성심사서류\n• 기타: 신규원료 코딩 / 비건·유기농·할랄·식약처 심사 관련 원료자료 대응',leader:true},
+          {name:'박진하',rank:'책임 연구원',mobile:'010-5121-2704',office:'010-4733-7301',ext:'7301',rr:'• 실험: 신제형개발 / 샘플제작 / 원료대체실험 / 기존제품개선 / 방부력테스트\n• 서류: 샘플설명서 / 전성분작성 / 제조지시서 작성 / 기능성심사서류\n• 기타: 신규원료 코딩 / 비건·유기농·할랄 관련 원료자료 대응'},
+          {name:'윤홍건',rank:'사원',mobile:'010-9745-8154',office:'-',ext:'-',rr:''}
+        ])">
+          <div class="dept-title"><div class="dt-name">제형연구</div><div class="dt-sub">Research & Development</div></div>
+          <div class="member-list">
+            <div class="member-item"><span>⭐</span><span class="mn">김지아</span><span class="mr">_책임 연구원</span></div>
+            <div class="member-item"><span class="mn">박진하</span><span class="mr">_책임 연구원</span></div>
+            <div class="member-item"><span class="mn">윤홍건</span><span class="mr">_사원</span></div>
+          </div>
         </div>
-            </div>
-    </div>
-    </div>
+      </div>
 
-    <!-- 제조물류팀 + 품질 + 제형연구 -->
-    <div class="sn-bot">
-      <div class="dept-card d-mint" onclick="openModal('제조물류팀 · Manufacture & Logistics', [
-        {name:'정의찬',rank:'차장',mobile:'010-2290-4946',office:'070-4733-7302',ext:'7302',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 지게차 안전 점검표 / 대기배출시설 및 방지시설 운영기록부\n• 폐수배출시설 운영일지 작성&관리 / 기계실 공조기 윤활유 주입 등 점검',leader:true},
-        {name:'신의철',rank:'과장',mobile:'010-8871-6774',office:'070-4733-7045',ext:'7045',rr:'• 원료&부자재 : 원료 입고 및 성적서 ERP 등록 / 원료 라벨링 / 원료 구매입력 / 자재·원료·벌크 출고시 ERP 창고이동\n• 기타 : 폐기물 처리 / KPP·AJ 파렛트 관리 / 벌크통 입출고 수량 관리 / 국내&해외 입출고 업무 / 자재·제품 재고관리'},
-        {name:'정귀오',rank:'대리',mobile:'010-9221-3205',office:'070-4733-7304',ext:'7304',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 제조설비 유지관리 / 원재료 재고관리 및 사용기한 관리'}
-      ])">
-        <div class="dept-title"><div class="dt-name">제조물류팀</div><div class="dt-sub">Manufacture & Logistics</div></div>
-      <div class="member-list">
-        <div class="member-item"><span>⭐</span><span class="mn">정의찬</span><span class="mr">_차장</span></div>
-        <div class="member-item"><span class="mn">신의철</span><span class="mr">_과장</span></div>
-        <div class="member-item"><span class="mn">정귀오</span><span class="mr">_대리</span></div>
-            </div>
-    </div>
+      <!-- 세로 구분선 -->
+      <div style="width:2px; background:#d0d5dd; margin:4px 10px; align-self:stretch; border-radius:2px;"></div>
 
-      <div class="dept-card d-peach" onclick="openModal('품질 · Quality Assurance', [
-        {name:'정언식',rank:'차장(팀장)',mobile:'010-3585-7346',office:'070-7829-5109',ext:'1005',rr:'• 서류 : 제품표준서 제개정 / 완제품 성적서 작성 / 충포장기록서 양식 작성 / 제조기록서 발행 및 검토 / 수출 서류\n• 시험 : CT / 계측기검교정 / 충진량 확인 / 외부시험의뢰 / 정제수 순도시험\n• Audit 대응 : ISO22716 / CGMP / 비건·유기농·천연 화장품\n• 책판 : 원료목록보고 / 생산실적보고 / 기능성화장품보고 / 안전성보고',leader:true},
-        {name:'고정인',rank:'대리',mobile:'010-3514-2755',office:'070-4733-7043',ext:'7043',rr:'• 원료 : ERP항목체크 / 샘플링 / 원료QC(물성·pH) / 표준품&관리품 관리 / 원료성적서 작성\n• 자재 : ERP항목체크 / 표준품 관리 / 자재성적서 작성\n• 벌크 : 제조벌크 QC / 안정성 시험 / 벌크성적서·시험지시서 작성'},
-        {name:'김미란',rank:'대리',mobile:'010-2439-2392',office:'070-4733-7044',ext:'7044',rr:'• QC : 시험설비점검 / 미생물실험 / 작업장환경모니터링 / 방부력시험 / 배지성능시험 / 충포장기록서 작성 및 검토'}
-      ])">
-        <div class="dept-title"><div class="dt-name">품질</div><div class="dt-sub">Quality Assurance</div></div>
-      <div class="member-list">
-        <div class="member-item"><span>⭐</span><span class="mn">정언식</span><span class="mr">_차장(팀장)</span></div>
-        <div class="member-item"><span class="mn">고정인</span><span class="mr">_대리</span></div>
-        <div class="member-item"><span class="mn">김미란</span><span class="mr">_대리</span></div>
-            </div>
-    </div>
+      <!-- 오른쪽: 제조공장 + 하위팀 -->
+      <div style="flex:2; display:flex; flex-direction:column; gap:8px;">
 
-      <div class="dept-card d-blue" onclick="openModal('제형연구 · Research & Development', [
-        {name:'김지아',rank:'책임 연구원',mobile:'010-8909-7469',office:'070-4733-7047',ext:'7047',rr:'• 실험: 신제형개발 / 샘플제작 (안정도·사용감·타겟카피) / 원료대체실험 / 기존제품개선 / 방부력테스트\n• 서류: 샘플설명서 / 전성분작성 / 제조지시서 작성 / 안정도결과 보고서 / 기능성심사서류\n• 기타: 신규원료 코딩 / 비건·유기농·할랄·식약처 심사 관련 원료자료 대응',leader:true},
-        {name:'박진하',rank:'책임 연구원',mobile:'010-5121-2704',office:'010-4733-7301',ext:'7301',rr:'• 실험: 신제형개발 / 샘플제작 / 원료대체실험 / 기존제품개선 / 방부력테스트\n• 서류: 샘플설명서 / 전성분작성 / 제조지시서 작성 / 기능성심사서류\n• 기타: 신규원료 코딩 / 비건·유기농·할랄 관련 원료자료 대응'},
-        {name:'윤홍건',rank:'사원',mobile:'010-9745-8154',office:'-',ext:'-',rr:''}
-      ])">
-        <div class="dept-title"><div class="dt-name">제형연구</div><div class="dt-sub">Research & Development</div></div>
-      <div class="member-list">
-        <div class="member-item"><span>⭐</span><span class="mn">김지아</span><span class="mr">_책임 연구원</span></div>
-        <div class="member-item"><span class="mn">박진하</span><span class="mr">_책임 연구원</span></div>
-        <div class="member-item"><span class="mn">윤홍건</span><span class="mr">_사원</span></div>
+        <!-- 제조공장 (상단) -->
+        <div class="dept-card d-pink" onclick="openModal('제조공장 · Manufacture Division', [
+          {name:'홍순기',rank:'부장(공장장)',mobile:'010-8478-9203',office:'-',ext:'-',rr:'• 제조/생산/물류/구매/품질 총괄',leader:true}
+        ])">
+          <div class="dept-title"><div class="dt-name">제조공장</div><div class="dt-sub">Manufacture Division</div></div>
+          <div class="member-list">
+            <div class="member-item"><span>⭐</span><span class="mn">홍순기</span><span class="mr">_부장(공장장)</span></div>
+          </div>
+        </div>
+
+        <!-- 하위팀: 구분선 박스 안에 가로 배치 -->
+        <div style="border:2px solid #d0d5dd; border-radius:10px; padding:10px; display:flex; gap:8px;">
+
+          <!-- 생산기획팀 -->
+          <div style="flex:1;">
+            <div class="dept-card d-green" onclick="openModal('생산기획팀 · Production Planning', [
+              {name:'최제열',rank:'과장',mobile:'010-4682-4844',office:'070-7829-5107',ext:'5107',rr:'• 발주접수 / 매출마감 / 출고입력 / 고객사대응\n• 외주발주&마감 / 외주일정&납품일정 관리',leader:true},
+              {name:'이주석',rank:'대리',mobile:'010-9247-5357',office:'070-7829-0151',ext:'1006',rr:'• 구매 : 부자재·원료 발주 / 납기 일정 조율 / 자재 관련 업체 대응 / 부자재·원료 재고 관리'},
+              {name:'최다희',rank:'대리',mobile:'010-5469-2312',office:'-',ext:'-',rr:''}
+            ])">
+              <div class="dept-title"><div class="dt-name">생산기획팀</div><div class="dt-sub">Production Planning</div></div>
+              <div class="member-list">
+                <div class="member-item"><span>⭐</span><span class="mn">최제열</span><span class="mr">_과장</span></div>
+                <div class="member-item"><span class="mn">이주석</span><span class="mr">_대리</span></div>
+                <div class="member-item"><span class="mn">최다희</span><span class="mr">_대리</span></div>
+              </div>
             </div>
-    </div>
-    </div>
+          </div>
+
+          <!-- 품질팀 -->
+          <div style="flex:1;">
+            <div class="dept-card d-peach" onclick="openModal('품질 · Quality Assurance', [
+              {name:'정언식',rank:'차장(팀장)',mobile:'010-3585-7346',office:'070-7829-5109',ext:'1005',rr:'• 서류 : 제품표준서 제개정 / 완제품 성적서 작성 / 충포장기록서 양식 작성 / 제조기록서 발행 및 검토 / 수출 서류\n• 시험 : CT / 계측기검교정 / 충진량 확인 / 외부시험의뢰 / 정제수 순도시험\n• Audit 대응 : ISO22716 / CGMP / 비건·유기농·천연 화장품\n• 책판 : 원료목록보고 / 생산실적보고 / 기능성화장품보고 / 안전성보고',leader:true},
+              {name:'고정인',rank:'대리',mobile:'010-3514-2755',office:'070-4733-7043',ext:'7043',rr:'• 원료 : ERP항목체크 / 샘플링 / 원료QC(물성·pH) / 표준품&관리품 관리 / 원료성적서 작성\n• 자재 : ERP항목체크 / 표준품 관리 / 자재성적서 작성\n• 벌크 : 제조벌크 QC / 안정성 시험 / 벌크성적서·시험지시서 작성'},
+              {name:'김미란',rank:'대리',mobile:'010-2439-2392',office:'070-4733-7044',ext:'7044',rr:'• QC : 시험설비점검 / 미생물실험 / 작업장환경모니터링 / 방부력시험 / 배지성능시험 / 충포장기록서 작성 및 검토'}
+            ])">
+              <div class="dept-title"><div class="dt-name">품질</div><div class="dt-sub">Quality Assurance</div></div>
+              <div class="member-list">
+                <div class="member-item"><span>⭐</span><span class="mn">정언식</span><span class="mr">_차장(팀장)</span></div>
+                <div class="member-item"><span class="mn">고정인</span><span class="mr">_대리</span></div>
+                <div class="member-item"><span class="mn">김미란</span><span class="mr">_대리</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 제조물류팀 -->
+          <div style="flex:1;">
+            <div class="dept-card d-mint" onclick="openModal('제조물류팀 · Manufacture & Logistics', [
+              {name:'정의찬',rank:'차장',mobile:'010-2290-4946',office:'070-4733-7302',ext:'7302',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 지게차 안전 점검표 / 대기배출시설 및 방지시설 운영기록부\n• 폐수배출시설 운영일지 작성&관리 / 기계실 공조기 윤활유 주입 등 점검',leader:true},
+              {name:'신의철',rank:'과장',mobile:'010-8871-6774',office:'070-4733-7045',ext:'7045',rr:'• 원료&부자재 : 원료 입고 및 성적서 ERP 등록 / 원료 라벨링 / 원료 구매입력 / 자재·원료·벌크 출고시 ERP 창고이동\n• 기타 : 폐기물 처리 / KPP·AJ 파렛트 관리 / 벌크통 입출고 수량 관리 / 국내&해외 입출고 업무 / 자재·제품 재고관리'},
+              {name:'정귀오',rank:'대리',mobile:'010-9221-3205',office:'070-4733-7304',ext:'7304',rr:'• 제조일정 조정 / 제조 및 칭량 / 내용물 출고 / 세척실 청소\n• 제조설비 유지관리 / 원재료 재고관리 및 사용기한 관리'}
+            ])">
+              <div class="dept-title"><div class="dt-name">제조물류팀</div><div class="dt-sub">Manufacture & Logistics</div></div>
+              <div class="member-list">
+                <div class="member-item"><span>⭐</span><span class="mn">정의찬</span><span class="mr">_차장</span></div>
+                <div class="member-item"><span class="mn">신의철</span><span class="mr">_과장</span></div>
+                <div class="member-item"><span class="mn">정귀오</span><span class="mr">_대리</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /하위팀 박스 -->
+      </div><!-- /오른쪽 -->
+    </div><!-- /성남 전체 flex -->
 
   </div><!-- /성남 -->
 
